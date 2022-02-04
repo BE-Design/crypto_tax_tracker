@@ -11,3 +11,17 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/** todo these styles are just for getting something readable during dev. they should be removed later. */
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  padding: 4px 6px;
+  color: #171717;
+}
+table {
+  width: 100%;
+}
+main {
+  padding: 2rem;
+}

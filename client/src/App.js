@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React from 'react';
-import TransactionTable from './components/TransactionTable';
+import TransactionTable from './components/TransactionTable/TransactionTable';
 
 class App extends React.Component {
   constructor(props) {
@@ -34,17 +34,10 @@ class App extends React.Component {
     const { transactions } = this.state;
     return (
       <main>
-        <div>
+        <div >
           <TransactionTable transactions={transactions} />
         </div>
       </main>
-      // <ul>
-      //   {transactions.map(item => (
-      //     <li key={item.id}>
-      //       {item.currency}
-      //     </li>
-      //   ))}
-      // </ul>
     );
   }
 }
