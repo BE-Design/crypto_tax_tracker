@@ -1,23 +1,21 @@
-import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useState } from 'react';
+import TransactionService from "../../api/services/transaction";
 import TransactionTableRow from "./TransactionTableRow";
+import { useQuery } from 'react-query'
 
-class TransactionTable extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      creating: false
-    };
-  }
-
-  render() {
-    const { creating, editing } = this.state;
-    const { transactions } = this.props;
+function TransactionTable() {
+  const [creating, setCreating] = useState(false);
+  const [editing, setEditing] = useState(false);
+    const { isLoading, data: response } = useQuery('transactions', () => TransactionService.all(), {
+      initialData: []
+    });
 
     return (
       <div>
-        <button onClick={() => this.setState({ creating: true })}>+ New Transaction</button>
-        <br /><br />
+        {isLoading &&
+          <div>LOADING</div>
+        }
+        <button onClick={() => setCreating(true)}>+ New Transaction</button>
         <table>
           <thead>
           <tr>
@@ -39,7 +37,7 @@ class TransactionTable extends React.Component {
             <td>WTF</td>
           </tr>
           }
-          {transactions.map(item => (
+          {response.data && response.data.map(item => (
             <TransactionTableRow
               key={item.id}
               transaction={item}
@@ -50,15 +48,6 @@ class TransactionTable extends React.Component {
         </table>
       </div>
     )
-  }
-}
-
-TransactionTable.defaultProps = {
-  transactions: [],
-}
-
-TransactionTable.propTypes = {
-  transactions: PropTypes.array
 }
 
 export default TransactionTable;

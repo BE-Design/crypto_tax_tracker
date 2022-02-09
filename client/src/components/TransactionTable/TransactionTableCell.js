@@ -1,12 +1,7 @@
-import PropTypes from 'prop-types';
 import React from "react";
 
-class TransactionTableCell extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  formatDisplayValue(type, value) {
+function TransactionTableCell({ type, value, editing, onChange }) {
+  const formatDisplayValue = (type, value) => {
     switch (type) {
       case "date":
         return value ? (new Date(value).toLocaleString()) : null;
@@ -19,38 +14,26 @@ class TransactionTableCell extends React.Component {
       default:
         return value;
     }
-  }
+  };
 
-  renderInput(type, value) {
+  const renderInput = (type, value) => {
     switch (type) {
       case "date":
-        return (<input type="datetime-local" defaultValue={value} onChange={this.props.onChange} />)
+        return (<input type="datetime-local" defaultValue={value} onChange={onChange} />)
       default:
-        return (<input type={type} defaultValue={value} onChange={this.props.onChange} />)
+        return (<input type={type} defaultValue={value} onChange={onChange} />)
     }
-  }
+  };
 
-  render() {
-    const { type, value, editing } = this.props;
-    return (
-      <div>
-        {editing ? (
-          this.renderInput(type, value)
-        ) : (
-          this.formatDisplayValue(type, value)
-        )}
-      </div>
-    )
-  }
-}
-
-TransactionTableCell.propTypes = {
-  value: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number
-  ]),
-  type: PropTypes.string,
-  editing: PropTypes.bool
+  return (
+    <div>
+      {editing ? (
+        renderInput(type, value)
+      ) : (
+        formatDisplayValue(type, value)
+      )}
+    </div>
+  );
 }
 
 export default TransactionTableCell;
