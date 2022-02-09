@@ -24,5 +24,15 @@ exports.store = async (req, res) => {
     acquiredAt: new Date()
   });
 
+  // todo what should response be?
   res.redirect('/transactions');
 };
+
+exports.update = async (req, res) => {
+  const transaction = await Transaction.update(req.body, {
+    where: { id: req.params.id }
+  });
+
+  // todo what should response be?
+  res.json(transaction);
+}

@@ -1,9 +1,18 @@
-import TransactionTableCell from "./TransactionTableCell";
-import React, { useState } from "react";
+import React, { useState } from 'react';
+import TransactionService from "../../api/services/transaction";
+import TransactionTableCell from './TransactionTableCell';
+import { useMutation } from 'react-query';
 
-function TransactionTableRow({ transaction }) {
+function TransactionTableRow({ transaction, onSave }) {
   const [dirtyState, setDirtyState] = useState(Object.assign({}, transaction));
   const [editing, setEditing] = useState(false);
+  const { mutate, isLoading } = useMutation(() => TransactionService.update(transaction.id, dirtyState), {
+    onSuccess: () => {
+      onSave();
+      setEditing(false);
+    }
+  });
+
 
   // handles form input bindings to our dirty state version of the transaction.
   const handleInput = (key, e) => {
@@ -53,7 +62,7 @@ function TransactionTableRow({ transaction }) {
         {editing &&
           <>
             <button type="button" onClick={handleCancel}>&times;</button>
-            <button type="button" onClick={() => {}}>Save</button>
+            <button type="button" onClick={mutate}>Save</button>
           </>
         }
         {!editing &&
