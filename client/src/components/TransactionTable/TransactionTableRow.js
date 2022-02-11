@@ -25,6 +25,11 @@ function TransactionTableRow({ transaction, onSave }) {
     setEditing(false);
   };
 
+  // TODO - handle delete
+  const handleDelete = () => {
+    console.log('delete transaction');
+  }
+
   return (
     <tr>
       <td>
@@ -66,7 +71,10 @@ function TransactionTableRow({ transaction, onSave }) {
           </>
         }
         {!editing &&
+          <>
           <button type={"button"} onClick={() => setEditing(true)}>Edit</button>
+          <button type={"button"} onClick={handleDelete}>Delete</button>
+          </>
         }
       </td>
     </tr>
