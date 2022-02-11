@@ -10,6 +10,10 @@ class TransactionService {
   static async update(id, data) {
     return await client.put(`${ENDPOINT}/${id}`, data);
   }
+
+  static async create(data) {
+    return await client.post(ENDPOINT, data);
+  }
 }
 
 export default TransactionService;

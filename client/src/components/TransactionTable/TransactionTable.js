@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import TransactionCreateRow from "./TransactionCreateRow";
 import TransactionService from "../../api/services/transaction";
 import TransactionTableRow from "./TransactionTableRow";
 import { useQuery } from 'react-query'
@@ -8,6 +9,11 @@ function TransactionTable() {
   const { isLoading, data: response, refetch } = useQuery('transactions', () => TransactionService.all(), {
     initialData: []
   });
+
+  const onCreate = () => {
+    refetch();
+    setCreating(false);
+  }
 
   return (
     <div>
@@ -32,9 +38,10 @@ function TransactionTable() {
         </thead>
         <tbody>
         {creating &&
-        <tr>
-          <td>WTF</td>
-        </tr>
+          <TransactionCreateRow
+            onSave={onCreate}
+            onCancel={() => setCreating(false)}
+          />
         }
         {response.data && response.data.map(item => (
           <TransactionTableRow

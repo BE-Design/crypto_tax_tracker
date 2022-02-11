@@ -50,7 +50,7 @@ function TransactionTableRow({ transaction, onSave }) {
         <TransactionTableCell type={"currency"} value={transaction.costBasis} editing={editing} onChange={e => handleInput("costBasis", e)} />
       </td>
       <td>
-        {/* todo gain/loss: static not editable*/}
+        {/* todo gain/loss: static not editable */}
       </td>
       <td>
         <TransactionTableCell type={"date"} value={transaction.acquiredAt} editing={editing} onChange={e => handleInput("acquiredAt", e)} />
