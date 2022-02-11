@@ -12,17 +12,7 @@ exports.index = async (req, res) => {
 
 exports.store = async (req, res) => {
   // todo this is all dummy data
-  await Transaction.create({
-    tradedAt: new Date(),
-    tradeType: 'buy',
-    currency: 'doge',
-    tradedFor: 'usd',
-    amount: 12.37434904,
-    totalInUsd: 144,
-    feesInUsd: 30,
-    costBasis: 66,
-    acquiredAt: new Date()
-  });
+  await Transaction.create(req.body);
 
   // todo what should response be?
   res.redirect('/transactions');
