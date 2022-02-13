@@ -20,8 +20,10 @@ function TransactionTableCell({ type, value, editing, onChange }) {
     switch (type) {
       case "date":
         return (<input type="datetime-local" defaultValue={value} onChange={onChange} />)
+      case "number":
+        return (<input type="number" defaultValue={value} onChange={onChange} />)
       default:
-        return (<input type={type} defaultValue={value} onChange={onChange} />)
+        return (<input type="text" defaultValue={value} onChange={onChange} />)
     }
   };
 
