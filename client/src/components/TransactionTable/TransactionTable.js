@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import TransactionCreateRow from "./TransactionCreateRow";
 import TransactionService from "../../api/services/transaction";
+import TransactionTableHeader from "./TransactionTableHeader";
 import TransactionTableRow from "./TransactionTableRow";
 import { useQuery } from 'react-query'
 
 function TransactionTable() {
   const [creating, setCreating] = useState(false);
-  const { isLoading, data: response, refetch } = useQuery('transactions', () => TransactionService.all(), {
+  const [sortOrder, setSortOrder] = useState('desc');
+  const { isLoading, data: response, refetch } = useQuery(['transactions', sortOrder], () => TransactionService.all(sortOrder), {
     initialData: []
   });
 
@@ -24,7 +26,9 @@ function TransactionTable() {
       <table>
         <thead>
         <tr>
-          <th>Date</th>
+          <th>
+            <TransactionTableHeader name={"Date"} sortDirection={sortOrder} onSortChange={e => setSortOrder(e)} />
+          </th>
           <th>Pair</th>
           <th>Type</th>
           <th>Amount</th>

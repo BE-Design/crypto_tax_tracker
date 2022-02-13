@@ -6,7 +6,11 @@
 const { Transaction } = require('../models');
 
 exports.index = async (req, res) => {
-  const transactions = await Transaction.findAll();
+  const transactions = await Transaction.findAll({
+    order: [
+      ['tradedAt', req.query.sort || 'desc']
+    ]
+  });
   res.json(transactions);
 };
 
