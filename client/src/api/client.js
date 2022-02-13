@@ -1,6 +1,5 @@
 import axios from "axios";
 
 export default axios.create({
-  // todo read this URL from .env
-  baseURL: "http://127.0.0.1:666"
+  baseURL: process.env.REACT_APP_API_BASE_URL || "http://127.0.0.1:666"
 });
