@@ -30,3 +30,10 @@ exports.update = async (req, res) => {
   // todo what should response be?
   res.json(transaction);
 }
+
+exports.destroy = async (req, res) => {
+  await Transaction.destroy({
+    where: { id: req.params.id }
+  });
+  res.json({ success: true })
+}

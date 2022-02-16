@@ -14,6 +14,10 @@ class TransactionService {
   static async create(data) {
     return await client.post(ENDPOINT, data);
   }
+
+  static async delete(id) {
+    return await client.delete(`${ENDPOINT}/${id}`);
+  }
 }
 
 export default TransactionService;
