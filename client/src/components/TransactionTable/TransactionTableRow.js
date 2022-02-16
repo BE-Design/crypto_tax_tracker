@@ -3,12 +3,12 @@ import TransactionService from "../../api/services/transaction";
 import TransactionTableCell from './TransactionTableCell';
 import { useMutation } from 'react-query';
 
-function TransactionTableRow({ transaction, onSave }) {
+function TransactionTableRow({ transaction, refetch }) {
   const [dirtyState, setDirtyState] = useState(Object.assign({}, transaction));
   const [editing, setEditing] = useState(false);
-  const { mutate, isLoading } = useMutation(() => TransactionService.update(transaction.id, dirtyState), {
+  const { mutate, isLoading: isSaving } = useMutation(() => TransactionService.update(transaction.id, dirtyState), {
     onSuccess: () => {
-      onSave();
+      refetch();
       setEditing(false);
     }
   });
@@ -25,10 +25,13 @@ function TransactionTableRow({ transaction, onSave }) {
     setEditing(false);
   };
 
-  // TODO - handle delete
-  const handleDelete = () => {
-    console.log('delete transaction');
-  }
+  const { mutate: deleteFn, isLoading: isDeleting } = useMutation(() => TransactionService.delete(transaction.id), {
+    onSuccess: () => {
+      refetch();
+    }
+  });
+
+
 
   return (
     <tr>
@@ -72,8 +75,8 @@ function TransactionTableRow({ transaction, onSave }) {
         }
         {!editing &&
           <>
-          <button type={"button"} onClick={() => setEditing(true)}>Edit</button>
-          <button type={"button"} onClick={handleDelete}>Delete</button>
+            <button type={"button"} onClick={() => setEditing(true)}>Edit</button>
+            <button type="button" onClick={deleteFn}>Delete</button>
           </>
         }
       </td>

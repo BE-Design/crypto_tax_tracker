@@ -47,7 +47,7 @@ function TransactionTable() {
           <TransactionTableRow
             key={item.id}
             transaction={item}
-            onSave={refetch}
+            refetch={refetch}
           />
         ))}
         </tbody>

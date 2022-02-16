@@ -28,7 +28,8 @@ exports.update = async (req, res) => {
 }
 
 exports.destroy = async (req, res) => {
-  await Transaction.destroy(req.body, {
+  await Transaction.destroy({
     where: { id: req.params.id }
   });
+  res.json({ success: true })
 }

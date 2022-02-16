@@ -15,8 +15,8 @@ class TransactionService {
     return await client.post(ENDPOINT, data);
   }
 
-  static async delete(id, data) {
-    return await client.delete(`${ENDPOINT}/${id}`, data);
+  static async delete(id) {
+    return await client.delete(`${ENDPOINT}/${id}`);
   }
 }
 
