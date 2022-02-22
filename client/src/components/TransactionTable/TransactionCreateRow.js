@@ -17,14 +17,14 @@ function TransactionCreateRow({ onSave, onCancel }) {
 
   return (
     <tr>
-      <td>
+      <td className={"px-5 py-5 border-b border-gray-200 bg-white text-sm"}>
         <TransactionTableCell type={"date"} value={null} editing={true} onChange={e => handleInput("tradedAt", e)} />
       </td>
-      <td>
+      <td className={"px-5 py-5 border-b border-gray-200 bg-white text-sm"}>
         <TransactionTableCell type={"text"} value={null} editing={true} onChange={e => handleInput("currency", e)} />
         <TransactionTableCell type={"text"} value={null} editing={true} onChange={e => handleInput("tradedFor", e)} />
       </td>
-      <td>
+      <td className={"px-5 py-5 border-b border-gray-200 bg-white text-sm"}>
         <TransactionTableCell type={"text"} value={null} editing={true} onChange={e => handleInput("tradeType", e)} />
       </td>
       <td>

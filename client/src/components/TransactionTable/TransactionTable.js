@@ -18,26 +18,27 @@ function TransactionTable() {
   }
 
   return (
-    <div>
+    <div className={"p-5 inline-block w-full drop-shadow-lg rounded-lg overflow-hidden"}>
       {isLoading &&
         <div>LOADING</div>
       }
       <button onClick={() => setCreating(true)}>+ New Transaction</button>
-      <table>
+      <table className={"w-full leading-normal"}>
         <thead>
         <tr>
-          <th>
+          <th className={"px-5 py-3 bg-white  border-b border-slate-200 text-slate-800  text-left text-sm uppercase font-normal bg-slate-100"}>
             <TransactionTableHeader name={"Date"} sortDirection={sortOrder} onSortChange={e => setSortOrder(e)} />
           </th>
-          <th>Pair</th>
-          <th>Type</th>
-          <th>Amount</th>
-          <th>Total</th>
-          <th>Fees</th>
-          <th>Basis</th>
-          <th>Gain/Loss</th>
-          <th>Acquired</th>
-          <th>Exchange</th>
+          <th className={"px-5 py-3 bg-white  border-b border-slate-200 text-slate-800  text-left text-sm uppercase font-normal bg-slate-100"}>Pair</th>
+          <th className={"px-5 py-3 bg-white  border-b border-slate-200 text-slate-800  text-left text-sm uppercase font-normal bg-slate-100"}>Type</th>
+          <th className={"px-5 py-3 bg-white  border-b border-slate-200 text-slate-800  text-left text-sm uppercase font-normal bg-slate-100"}>Amount</th>
+          <th className={"px-5 py-3 bg-white  border-b border-slate-200 text-slate-800  text-left text-sm uppercase font-normal bg-slate-100"}>Total</th>
+          <th className={"px-5 py-3 bg-white  border-b border-slate-200 text-slate-800  text-left text-sm uppercase font-normal bg-slate-100"}>Fees</th>
+          <th className={"px-5 py-3 bg-white  border-b border-slate-200 text-slate-800  text-left text-sm uppercase font-normal bg-slate-100"}>Basis</th>
+          <th className={"px-5 py-3 bg-white  border-b border-slate-200 text-slate-800  text-left text-sm uppercase font-normal bg-slate-100"}>Gain/Loss</th>
+          <th className={"px-5 py-3 bg-white  border-b border-slate-200 text-slate-800  text-left text-sm uppercase font-normal bg-slate-100"}>Acquired</th>
+          <th className={"px-5 py-3 bg-white  border-b border-slate-200 text-slate-800  text-left text-sm uppercase font-normal bg-slate-100"}>Exchange</th>
+          <th className={"px-5 py-3 bg-white  border-b border-slate-200 text-slate-800  text-left text-sm uppercase font-normal bg-slate-100"}></th>
         </tr>
         </thead>
         <tbody>
