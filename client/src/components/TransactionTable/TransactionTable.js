@@ -18,27 +18,28 @@ function TransactionTable() {
   }
 
   return (
-    <div className={"p-5 inline-block w-full drop-shadow-lg rounded-lg overflow-hidden"}>
+    <div className="p-5 inline-block w-full drop-shadow-lg rounded-lg overflow-hidden">
       {isLoading &&
         <div>LOADING</div>
       }
       <button onClick={() => setCreating(true)}>+ New Transaction</button>
-      <table className={"w-full leading-normal"}>
+      <table className="w-full leading-normal">
         <thead>
         <tr>
-          <th className={"px-5 py-3 bg-white  border-b border-slate-200 text-slate-800  text-left text-sm uppercase font-normal bg-slate-100"}>
+          <th className="w-64 px-5 py-3  bg-slate-100 border-b border-slate-200  text-slate-800 text-left text-sm uppercase font-normal">
             <TransactionTableHeader name={"Date"} sortDirection={sortOrder} onSortChange={e => setSortOrder(e)} />
           </th>
-          <th className={"px-5 py-3 bg-white  border-b border-slate-200 text-slate-800  text-left text-sm uppercase font-normal bg-slate-100"}>Pair</th>
-          <th className={"px-5 py-3 bg-white  border-b border-slate-200 text-slate-800  text-left text-sm uppercase font-normal bg-slate-100"}>Type</th>
-          <th className={"px-5 py-3 bg-white  border-b border-slate-200 text-slate-800  text-left text-sm uppercase font-normal bg-slate-100"}>Amount</th>
-          <th className={"px-5 py-3 bg-white  border-b border-slate-200 text-slate-800  text-left text-sm uppercase font-normal bg-slate-100"}>Total</th>
-          <th className={"px-5 py-3 bg-white  border-b border-slate-200 text-slate-800  text-left text-sm uppercase font-normal bg-slate-100"}>Fees</th>
-          <th className={"px-5 py-3 bg-white  border-b border-slate-200 text-slate-800  text-left text-sm uppercase font-normal bg-slate-100"}>Basis</th>
-          <th className={"px-5 py-3 bg-white  border-b border-slate-200 text-slate-800  text-left text-sm uppercase font-normal bg-slate-100"}>Gain/Loss</th>
-          <th className={"px-5 py-3 bg-white  border-b border-slate-200 text-slate-800  text-left text-sm uppercase font-normal bg-slate-100"}>Acquired</th>
-          <th className={"px-5 py-3 bg-white  border-b border-slate-200 text-slate-800  text-left text-sm uppercase font-normal bg-slate-100"}>Exchange</th>
-          <th className={"px-5 py-3 bg-white  border-b border-slate-200 text-slate-800  text-left text-sm uppercase font-normal bg-slate-100"}></th>
+          <th className="w-64 px-5 py-3  bg-slate-100 border-b border-slate-200  text-slate-800 text-left text-sm uppercase font-normal">
+            Pair
+          </th>
+          <th className="w-56 px-5 py-3 bg-slate-100  border-b border-slate-200  text-slate-800 text-left text-sm uppercase font-normal">Type</th>
+          <th className="w-56 px-5 py-3 bg-slate-100  border-b border-slate-200  text-slate-800 text-left text-sm uppercase font-normal">Amount</th>
+          <th className="w-56 px-5 py-3 bg-slate-100  border-b border-slate-200  text-slate-800 text-left text-sm uppercase font-normal">Total</th>
+          <th className="w-56 px-5 py-3 bg-slate-100  border-b border-slate-200  text-slate-800 text-left text-sm uppercase font-normal">Fees</th>
+          <th className="w-56 px-5 py-3 bg-slate-100  border-b border-slate-200  text-slate-800 text-left text-sm uppercase font-normal">Basis</th>
+          <th className="w-56 px-5 py-3 bg-slate-100  border-b border-slate-200  text-slate-800 text-left text-sm uppercase font-normal">Gain/Loss</th>
+          <th className="w-56 px-5 py-3 bg-slate-100  border-b border-slate-200  text-slate-800 text-left text-sm uppercase font-normal">Acquired</th>
+          <th className="w-56 px-5 py-3 bg-slate-100  border-b border-slate-200  text-slate-800 text-left text-sm uppercase font-normal" colspan="2">Exchange</th>
         </tr>
         </thead>
         <tbody>
