@@ -1,12 +1,17 @@
 import React from 'react';
+import { ArrowSmUpIcon, ArrowSmDownIcon } from '@heroicons/react/solid';
 
 function TransactionTableSortableHeader({name, sortDirection, onSortChange}) {
   return (
-    <div className="sortable-header">
+    <div className="inline-flex items-center gap-1">
       {name}
-      <span className="sort-arrows">
-        <span className={`up-arrow ${sortDirection === 'asc' ? '--active' : ''}`} onClick={() => onSortChange('asc')} />
-        <span className={`down-arrow ${sortDirection === 'desc' ? '--active' : ''}`} onClick={() => onSortChange('desc')} />
+      <span className="cursor-pointer">
+        {sortDirection === 'asc' &&
+          <ArrowSmUpIcon className="h-5 w-5 text-slate-500" onClick={() => onSortChange('desc')} />
+        }
+        {sortDirection === 'desc' &&
+          <ArrowSmDownIcon className="h-5 w-5 text-slate-500" onClick={() => onSortChange('asc') } />
+        }
       </span>
     </div>
   )
