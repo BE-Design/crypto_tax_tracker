@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import TransactionCreateRow from "./TransactionCreateRow";
 import TransactionService from "../../api/services/transaction";
-import TransactionTableHeader from "./TransactionTableHeader";
+import TransactionTableSortableHeader from "./TransactionTableSortableHeader";
 import TransactionTableRow from "./TransactionTableRow";
 import { useQuery } from 'react-query'
 
@@ -27,7 +27,7 @@ function TransactionTable() {
         <thead>
         <tr>
           <th className="w-64 px-5 py-3  bg-slate-100 border-b border-slate-200  text-slate-800 text-left text-sm uppercase font-normal">
-            <TransactionTableHeader name={"Date"} sortDirection={sortOrder} onSortChange={e => setSortOrder(e)} />
+            <TransactionTableSortableHeader name={"Date"} sortDirection={sortOrder} onSortChange={e => setSortOrder(e)} />
           </th>
           <th className="w-64 px-5 py-3  bg-slate-100 border-b border-slate-200  text-slate-800 text-left text-sm uppercase font-normal">
             Pair
