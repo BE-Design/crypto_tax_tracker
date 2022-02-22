@@ -1,12 +1,8 @@
 import React, { useState } from 'react';
-import { ReactComponent as XIcon } from '../../icons/x.svg';
-import { ReactComponent as PencilIcon } from '../../icons/pencil-outline.svg';
-import { ReactComponent as RightArrowIcon } from '../../icons/arrow-right.svg';
-import { ReactComponent as SaveIcon } from '../../icons/save-outline.svg';
-import { ReactComponent as TrashIcon } from '../../icons/trash-outline.svg';
 import TransactionService from '../../api/services/transaction';
 import TransactionTableCell from './TransactionTableCell';
 import { useMutation } from 'react-query';
+import { ArrowRightIcon, PencilIcon, SaveIcon, TrashIcon, XIcon } from '@heroicons/react/outline';
 
 function TransactionTableRow({ transaction, refetch }) {
   const [dirtyState, setDirtyState] = useState(Object.assign({}, transaction));
@@ -45,7 +41,7 @@ function TransactionTableRow({ transaction, refetch }) {
         <div className="flex items-center">
           <TransactionTableCell type="text" value={transaction.currency} editing={editing} onChange={e => handleInput("currency", e)} />
           {!editing &&
-            <RightArrowIcon className="h-5 w-5" />
+            <ArrowRightIcon className="h-4 w-4" />
           }
           <TransactionTableCell type="text" value={transaction.tradedFor} editing={editing} onChange={e => handleInput("tradedFor", e)} />
         </div>

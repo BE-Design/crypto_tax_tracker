@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { ReactComponent as XIcon } from '../../icons/x.svg';
-import { ReactComponent as SaveIcon } from '../../icons/save-outline.svg';
+import { useMutation } from 'react-query';
 import TransactionService from "../../api/services/transaction";
 import TransactionTableCell from './TransactionTableCell';
-import { useMutation } from 'react-query';
+import { SaveIcon, XIcon } from '@heroicons/react/outline';
 
 function TransactionCreateRow({ onSave, onCancel }) {
   const [transaction, setTransaction] = useState({});
