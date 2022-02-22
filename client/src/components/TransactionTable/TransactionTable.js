@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import TransactionCreateRow from "./TransactionCreateRow";
 import TransactionService from "../../api/services/transaction";
-import TransactionTableHeader from "./TransactionTableHeader";
+import TransactionTableSortableHeader from "./TransactionTableSortableHeader";
 import TransactionTableRow from "./TransactionTableRow";
 import { useQuery } from 'react-query'
 
@@ -18,26 +18,28 @@ function TransactionTable() {
   }
 
   return (
-    <div>
+    <div className="p-5 inline-block w-full drop-shadow-lg rounded-lg overflow-hidden">
       {isLoading &&
         <div>LOADING</div>
       }
       <button onClick={() => setCreating(true)}>+ New Transaction</button>
-      <table>
+      <table className="w-full leading-normal">
         <thead>
         <tr>
-          <th>
-            <TransactionTableHeader name={"Date"} sortDirection={sortOrder} onSortChange={e => setSortOrder(e)} />
+          <th className="w-64 px-5 py-3  bg-slate-100 border-b border-slate-200  text-slate-800 text-left text-sm uppercase font-normal">
+            <TransactionTableSortableHeader name={"Date"} sortDirection={sortOrder} onSortChange={e => setSortOrder(e)} />
           </th>
-          <th>Pair</th>
-          <th>Type</th>
-          <th>Amount</th>
-          <th>Total</th>
-          <th>Fees</th>
-          <th>Basis</th>
-          <th>Gain/Loss</th>
-          <th>Acquired</th>
-          <th>Exchange</th>
+          <th className="w-64 px-5 py-3  bg-slate-100 border-b border-slate-200  text-slate-800 text-left text-sm uppercase font-normal">
+            Pair
+          </th>
+          <th className="w-56 px-5 py-3 bg-slate-100  border-b border-slate-200  text-slate-800 text-left text-sm uppercase font-normal">Type</th>
+          <th className="w-56 px-5 py-3 bg-slate-100  border-b border-slate-200  text-slate-800 text-left text-sm uppercase font-normal">Amount</th>
+          <th className="w-56 px-5 py-3 bg-slate-100  border-b border-slate-200  text-slate-800 text-left text-sm uppercase font-normal">Total</th>
+          <th className="w-56 px-5 py-3 bg-slate-100  border-b border-slate-200  text-slate-800 text-left text-sm uppercase font-normal">Fees</th>
+          <th className="w-56 px-5 py-3 bg-slate-100  border-b border-slate-200  text-slate-800 text-left text-sm uppercase font-normal">Basis</th>
+          <th className="w-56 px-5 py-3 bg-slate-100  border-b border-slate-200  text-slate-800 text-left text-sm uppercase font-normal">Gain/Loss</th>
+          <th className="w-56 px-5 py-3 bg-slate-100  border-b border-slate-200  text-slate-800 text-left text-sm uppercase font-normal">Acquired</th>
+          <th className="w-56 px-5 py-3 bg-slate-100  border-b border-slate-200  text-slate-800 text-left text-sm uppercase font-normal" colspan="2">Exchange</th>
         </tr>
         </thead>
         <tbody>

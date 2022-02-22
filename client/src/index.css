@@ -1,3 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/** styles generated from create-react-app (can likely be removed) */
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -12,61 +18,6 @@ code {
     monospace;
 }
 
-/** todo these styles are just for getting something readable during dev. they should be removed later. */
-table,
-th,
-td {
-  border: 1px solid black;
-  border-collapse: collapse;
-  padding: 4px 6px;
-  color: #171717;
-}
-table {
-  width: 100%;
-}
 main {
   padding: 2rem;
-}
-input {
-  width: 90%;
-}
-
-.sortable-header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.sort-arrows {
-  display: inline-flex;
-  flex-direction: column;
-  margin-left: 1rem;
-}
-.up-arrow {
-  width: 0;
-  height: 0;
-  border: solid 5px transparent;
-  background: transparent;
-  border-bottom-style: solid;
-  border-bottom-width: 7px;
-  border-bottom-color: #BBB;
-  border-top-width: 0;
-  cursor: pointer;
-}
-.down-arrow {
-  width: 0;
-  height: 0;
-  border: solid 5px transparent;
-  background: transparent;
-  border-top-style: solid;
-  border-top-width: 7px;
-  border-bottom-width: 0;
-  border-top-color: #BBB;
-  margin-top:1px;
-  cursor: pointer;
-}
-.down-arrow.--active {
-  border-top-color: black;
-}
-.up-arrow.--active {
-  border-bottom-color: black;
 }

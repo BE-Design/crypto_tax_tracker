@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import TransactionService from "../../api/services/transaction";
+import TransactionService from '../../api/services/transaction';
 import TransactionTableCell from './TransactionTableCell';
 import { useMutation } from 'react-query';
+import { ArrowRightIcon, PencilIcon, SaveIcon, TrashIcon, XIcon } from '@heroicons/react/outline';
 
 function TransactionTableRow({ transaction, refetch }) {
   const [dirtyState, setDirtyState] = useState(Object.assign({}, transaction));
@@ -31,53 +32,65 @@ function TransactionTableRow({ transaction, refetch }) {
     }
   });
 
-
-
   return (
     <tr>
-      <td>
+      <td className="w-48 px-5 py-5 border-b border-slate-200 bg-white text-sm">
         <TransactionTableCell type={"date"} value={transaction.tradedAt} editing={editing} onChange={e => handleInput("tradedAt", e)} />
       </td>
-      <td>
-        <TransactionTableCell type={"text"} value={transaction.currency} editing={editing} onChange={e => handleInput("currency", e)} />
-        <TransactionTableCell type={"text"} value={transaction.tradedFor} editing={editing} onChange={e => handleInput("tradedFor", e)} />
+      <td className="px-5 py-5 border-b border-slate-200 bg-white text-sm">
+        <div className="flex items-center">
+          <TransactionTableCell type="text" value={transaction.currency} editing={editing} onChange={e => handleInput("currency", e)} />
+          {!editing &&
+            <ArrowRightIcon className="h-4 w-4" />
+          }
+          <TransactionTableCell type="text" value={transaction.tradedFor} editing={editing} onChange={e => handleInput("tradedFor", e)} />
+        </div>
+
       </td>
-      <td>
+      <td className="w-48 px-5 py-5 border-b border-slate-200 bg-white text-sm">
         <TransactionTableCell type={"text"} value={transaction.tradeType} editing={editing} onChange={e => handleInput("tradeType", e)} />
       </td>
-      <td>
+      <td className="w-48 px-5 py-5 border-b border-slate-200 bg-white text-sm">
         <TransactionTableCell type={"number"} value={transaction.amount} editing={editing} onChange={e => handleInput("amount", e)} />
       </td>
-      <td>
+      <td className="w-48 px-5 py-5 border-b border-slate-200 bg-white text-sm">
         <TransactionTableCell type={"currency"} value={transaction.totalInUsd} editing={editing} onChange={e => handleInput("totalInUsd", e)} />
       </td>
-      <td>
+      <td className="w-48 px-5 py-5 border-b border-slate-200 bg-white text-sm">
         <TransactionTableCell type={"currency"} value={transaction.feesInUsd} editing={editing} onChange={e => handleInput("feesInUsd", e)} />
       </td>
-      <td>
+      <td className="w-48 px-5 py-5 border-b border-slate-200 bg-white text-sm">
         <TransactionTableCell type={"currency"} value={transaction.costBasis} editing={editing} onChange={e => handleInput("costBasis", e)} />
       </td>
-      <td>
+      <td className="px-5 py-5 border-b border-slate-200 bg-white text-sm">
         {/* todo gain/loss: static not editable */}
       </td>
-      <td>
+      <td className="px-5 py-5 border-b border-slate-200 bg-white text-sm">
         <TransactionTableCell type={"date"} value={transaction.acquiredAt} editing={editing} onChange={e => handleInput("acquiredAt", e)} />
       </td>
-      <td>
-        <TransactionTableCell type={"text"} value={transaction.exchange || "n/a"} onChange={e => handleInput("exchange", e)} />
+      <td className="px-5 py-5 border-b border-slate-200 bg-white text-sm">
+        <TransactionTableCell type={"text"} value={transaction.exchange || "n/a"} editing={editing} onChange={e => handleInput("exchange", e)} />
       </td>
-      <td>
+      <td className="px-5 py-5 border-b border-slate-200 bg-white text-sm text-right w-5">
         {editing &&
-          <>
-            <button type="button" onClick={handleCancel}>&times;</button>
-            <button type="button" onClick={mutate}>Save</button>
-          </>
+          <span className="inline-flex gap-2 ml-auto text-slate-500">
+            <button type="button" onClick={handleCancel}>
+              <XIcon className="w-5 h-5" />
+            </button>
+            <button type="button" onClick={mutate}>
+              <SaveIcon className="w-5 h-5" />
+            </button>
+          </span>
         }
         {!editing &&
-          <>
-            <button type={"button"} onClick={() => setEditing(true)}>Edit</button>
-            <button type="button" onClick={deleteFn}>Delete</button>
-          </>
+          <span className="inline-flex gap-2 ml-auto text-slate-500">
+            <button type="button" onClick={() => setEditing(true)}>
+              <PencilIcon className="w-5 h-5" />
+            </button>
+            <button type="button" onClick={deleteFn}>
+              <TrashIcon className="w-5 h-5" />
+            </button>
+          </span>
         }
       </td>
     </tr>
