@@ -16,7 +16,10 @@ class TransactionService {
   }
 
   static async delete(id) {
-    return await client.delete(`${ENDPOINT}/${id}`);
+    let result = window.confirm('Are you sure you want to delete?');
+    if (result) {
+      return await client.delete(`${ENDPOINT}/${id}`);
+    }
   }
 }
 
