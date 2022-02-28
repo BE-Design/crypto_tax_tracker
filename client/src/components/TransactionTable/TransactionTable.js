@@ -3,7 +3,7 @@ import TransactionCreateRow from "./TransactionCreateRow";
 import TransactionService from "../../api/services/transaction";
 import TransactionTableSortableHeader from "./TransactionTableSortableHeader";
 import TransactionTableRow from "./TransactionTableRow";
-import { useQuery } from 'react-query'
+import { useQuery } from 'react-query';
 
 function TransactionTable() {
   const [creating, setCreating] = useState(false);
