@@ -26,11 +26,15 @@ function TransactionTableRow({ transaction, refetch }) {
     setEditing(false);
   };
 
+  const deleteConfirmation = () => { document.getElementById("confirm").hidden=false }
   const { mutate: deleteFn, isLoading: isDeleting } = useMutation(() => TransactionService.delete(transaction.id), {
     onSuccess: () => {
       refetch();
     }
   });
+
+  const confirmYes = () => deleteFn() ;
+  const confirmNo = () => { document.getElementById("confirm").hidden=true };
 
   return (
     <tr>
@@ -87,9 +91,14 @@ function TransactionTableRow({ transaction, refetch }) {
             <button type="button" onClick={() => setEditing(true)}>
               <PencilIcon className="w-5 h-5" />
             </button>
-            <button type="button" onClick={ deleteFn }>
+            <button type="button" onClick={ deleteConfirmation }>
               <TrashIcon className="w-5 h-5" />
             </button>
+            <div id="confirm" hidden>
+            <p>Are you sure you want to delete?</p>
+            <button type="button" onClick={ confirmYes }>Yes</button>
+            <button type="button" onClick={ confirmNo }>No</button>
+            </div>
           </span>
         }
       </td>
