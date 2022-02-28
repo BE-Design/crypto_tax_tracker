@@ -87,7 +87,7 @@ function TransactionTableRow({ transaction, refetch }) {
             <button type="button" onClick={() => setEditing(true)}>
               <PencilIcon className="w-5 h-5" />
             </button>
-            <button type="button" onClick={deleteFn}>
+            <button type="button" onClick={ deleteFn }>
               <TrashIcon className="w-5 h-5" />
             </button>
           </span>
