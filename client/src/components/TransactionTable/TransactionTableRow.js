@@ -3,6 +3,7 @@ import TransactionService from '../../api/services/transaction';
 import TransactionTableCell from './TransactionTableCell';
 import { useMutation } from 'react-query';
 import { ArrowRightIcon, PencilIcon, SaveIcon, TrashIcon, XIcon } from '@heroicons/react/outline';
+import { toast } from 'react-toastify';
 
 function TransactionTableRow({ transaction, refetch }) {
   const [dirtyState, setDirtyState] = useState(Object.assign({}, transaction));
@@ -26,14 +27,20 @@ function TransactionTableRow({ transaction, refetch }) {
     setEditing(false);
   };
 
+  //show confirmation div, delete transaction, refetch, and toast notification
   const deleteConfirmation = () => { document.getElementById("confirm").hidden=false }
   const { mutate: deleteFn, isLoading: isDeleting } = useMutation(() => TransactionService.delete(transaction.id), {
     onSuccess: () => {
       refetch();
+      deleteSuccess();
     }
   });
 
-  const confirmYes = () => deleteFn() ;
+  //toast notification for deleting
+  const deleteSuccess = () => toast.success("Transaction deleted!")
+  //delete transaction on confirmation
+  const confirmYes = () => deleteFn();
+  //hide confirmation div when no is selected
   const confirmNo = () => { document.getElementById("confirm").hidden=true };
 
   return (
@@ -94,15 +101,16 @@ function TransactionTableRow({ transaction, refetch }) {
             <button type="button" onClick={ deleteConfirmation }>
               <TrashIcon className="w-5 h-5" />
             </button>
+            
             <div id="confirm" hidden>
             <p>Are you sure you want to delete?</p>
             <button type="button" onClick={ confirmYes }>Yes</button>
-            <button type="button" onClick={ confirmNo }>No</button>
+            <button type="button" onClick={ confirmNo }>No</button>  
             </div>
-          </span>
+          </span> 
         }
       </td>
-    </tr>
+    </tr>  
   )
 }
 
