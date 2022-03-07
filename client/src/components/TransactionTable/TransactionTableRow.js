@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import TransactionService from '../../api/services/transaction';
 import TransactionTableCell from './TransactionTableCell';
 import { useMutation } from 'react-query';
-import { ArrowRightIcon, PencilIcon, SaveIcon, TrashIcon, XIcon } from '@heroicons/react/outline';
+import { ArrowRightIcon, PencilIcon, SaveIcon, TrashIcon, XIcon, CheckIcon, QuestionMarkCircleIcon } from '@heroicons/react/outline';
 import { toast } from 'react-toastify';
 
 function TransactionTableRow({ transaction, refetch }) {
@@ -101,9 +101,13 @@ function TransactionTableRow({ transaction, refetch }) {
         }
         {deleteConfirmation &&
           <span className="inline-flex gap-2 ml-auto text-slate-500">
-            Are you sure you want to delete?
-            <button type="button" onClick={ deleteFn }>Yes</button>
-            <button type="button" onClick={() => setDeleteConfirmation(false) }>No</button>
+            <QuestionMarkCircleIcon className="w-5 h-5" />
+            <button type="button" onClick={ deleteFn }>
+              <CheckIcon className="w-5 h-5" />  
+            </button>
+            <button type="button" onClick={() => setDeleteConfirmation(false) }>
+              <XIcon className="w-5 h-5" />  
+            </button>
           </span>
         }
       </td>
