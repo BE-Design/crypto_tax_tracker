@@ -3,6 +3,7 @@ import TransactionService from '../../api/services/transaction';
 import TransactionTableCell from './TransactionTableCell';
 import { useMutation } from 'react-query';
 import { ArrowRightIcon, PencilIcon, SaveIcon, TrashIcon, XIcon } from '@heroicons/react/outline';
+import { toast } from 'react-toastify';
 
 function TransactionTableRow({ transaction, refetch }) {
   const [dirtyState, setDirtyState] = useState(Object.assign({}, transaction));
@@ -26,15 +27,17 @@ function TransactionTableRow({ transaction, refetch }) {
     setEditing(false);
   };
 
-  const deleteConfirmation = () => { document.getElementById("confirm").hidden=false }
+  //show confirmation div, delete transaction, refetch, and toast notification
+  const [deleteConfirmation, setDeleteConfirmation] = useState(false);
   const { mutate: deleteFn, isLoading: isDeleting } = useMutation(() => TransactionService.delete(transaction.id), {
     onSuccess: () => {
       refetch();
+      deleteSuccess();
     }
   });
 
-  const confirmYes = () => deleteFn() ;
-  const confirmNo = () => { document.getElementById("confirm").hidden=true };
+  //toast notification for deleting
+  const deleteSuccess = () => toast.success("Transaction deleted!")
 
   return (
     <tr>
@@ -91,18 +94,20 @@ function TransactionTableRow({ transaction, refetch }) {
             <button type="button" onClick={() => setEditing(true)}>
               <PencilIcon className="w-5 h-5" />
             </button>
-            <button type="button" onClick={ deleteConfirmation }>
+            <button type="button" onClick={() => setDeleteConfirmation(true)}>
               <TrashIcon className="w-5 h-5" />
             </button>
-            <div id="confirm" hidden>
-            <p>Are you sure you want to delete?</p>
-            <button type="button" onClick={ confirmYes }>Yes</button>
-            <button type="button" onClick={ confirmNo }>No</button>
-            </div>
+          </span> 
+        }
+        {deleteConfirmation &&
+          <span className="inline-flex gap-2 ml-auto text-slate-500">
+            Are you sure you want to delete?
+            <button type="button" onClick={ deleteFn }>Yes</button>
+            <button type="button" onClick={() => setDeleteConfirmation(false) }>No</button>
           </span>
         }
       </td>
-    </tr>
+    </tr>  
   )
 }
 
