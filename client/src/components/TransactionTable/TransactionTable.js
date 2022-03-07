@@ -17,6 +17,7 @@ function TransactionTable() {
     setCreating(false);
   }
 
+
   return (
     <div className="p-5 inline-block w-full drop-shadow-lg rounded-lg overflow-hidden">
       {isLoading &&

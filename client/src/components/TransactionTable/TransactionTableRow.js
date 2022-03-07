@@ -12,6 +12,7 @@ function TransactionTableRow({ transaction, refetch }) {
     onSuccess: () => {
       refetch();
       setEditing(false);
+      updateSuccess();
     }
   });
 
@@ -38,6 +39,9 @@ function TransactionTableRow({ transaction, refetch }) {
 
   //toast notification for deleting
   const deleteSuccess = () => toast.success("Transaction deleted!")
+
+  //toast notification for updating
+  const updateSuccess = () => toast.success("Transaction updated!")
 
   return (
     <tr>

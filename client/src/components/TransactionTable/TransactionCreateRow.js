@@ -3,18 +3,22 @@ import { useMutation } from 'react-query';
 import TransactionService from "../../api/services/transaction";
 import TransactionTableCell from './TransactionTableCell';
 import { SaveIcon, XIcon } from '@heroicons/react/outline';
+import { toast } from 'react-toastify';
 
 function TransactionCreateRow({ onSave, onCancel }) {
   const [transaction, setTransaction] = useState({});
   const { mutate, isLoading } = useMutation(() => TransactionService.create(transaction), {
     onSuccess: () => {
       onSave();
-    }
+      createSuccess();
+    }, 
   });
 
   const handleInput = (key, e) => {
     setTransaction({ ...transaction, [key]: e.target.value });
   };
+
+  const createSuccess = () => toast.success('New transaction added!');
 
   return (
     <tr>
