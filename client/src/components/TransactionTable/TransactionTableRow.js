@@ -89,7 +89,7 @@ function TransactionTableRow({ transaction, refetch }) {
             </button>
           </span>
         }
-        {!editing &&
+        {!editing && !deleteConfirmation &&
           <span className="inline-flex gap-2 ml-auto text-slate-500">
             <button type="button" onClick={() => setEditing(true)}>
               <PencilIcon className="w-5 h-5" />
