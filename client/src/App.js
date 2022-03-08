@@ -10,7 +10,7 @@ function  App() {
   return (
     <QueryClientProvider client={queryClient}>
       <TransactionTable />
-      <ToastContainer />
+      <ToastContainer position="bottom-left" />
     </QueryClientProvider>
   );
 }
