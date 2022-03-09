@@ -4,7 +4,11 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    staleTime: 60 * 1000 // 1 minute
+  }
+});
 
 function  App() {
   return (
