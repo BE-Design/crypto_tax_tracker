@@ -1,22 +1,17 @@
 import React, { useState } from 'react';
 import TransactionCreateRow from "./TransactionCreateRow";
-import TransactionService from "../../api/services/transaction";
 import TransactionTableSortableHeader from "./TransactionTableSortableHeader";
 import TransactionTableRow from "./TransactionTableRow";
-import { useQuery } from 'react-query';
+import { useGetTransactions } from "../../hooks/transaction";
 
 function TransactionTable() {
   const [creating, setCreating] = useState(false);
   const [sortOrder, setSortOrder] = useState('desc');
-  const { isLoading, data: response, refetch } = useQuery(['transactions', sortOrder], () => TransactionService.all(sortOrder), {
-    initialData: []
-  });
+  const { isLoading, data: response } = useGetTransactions(sortOrder);
 
   const onCreate = () => {
-    refetch();
     setCreating(false);
   }
-
 
   return (
     <div className="p-5 inline-block w-full drop-shadow-lg rounded-lg overflow-hidden">
@@ -54,7 +49,6 @@ function TransactionTable() {
           <TransactionTableRow
             key={item.id}
             transaction={item}
-            refetch={refetch}
           />
         ))}
         </tbody>
