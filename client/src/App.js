@@ -1,4 +1,5 @@
 import React from 'react';
+import CoinCard from "./components/CoinCard";
 import TransactionTable from './components/TransactionTable/TransactionTable';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ToastContainer } from 'react-toastify';
@@ -13,7 +14,17 @@ const queryClient = new QueryClient({
 function  App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <TransactionTable />
+      <div className="p-5 bg-gray-100 h-screen">
+        <div className="mb-12 flex justify-between">
+          {/* todo ideally I'd like this list to be customizable and likely broken out into another component... */}
+          <CoinCard coin="bitcoin" />
+          <CoinCard coin="ethereum" />
+          <CoinCard coin="cosmos" />
+          <CoinCard coin="dogecoin" />
+          <CoinCard coin="polkadot" />
+        </div>
+        <TransactionTable />
+      </div>
       <ToastContainer position="bottom-left" />
     </QueryClientProvider>
   );
