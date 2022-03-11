@@ -6,11 +6,21 @@
 const { Transaction } = require('../models');
 
 exports.index = async (req, res) => {
-  const transactions = await Transaction.findAll({
+  const queryOptions = {
+    // always set a default query order of trade date desc.
     order: [
       ['tradedAt', req.query.sort || 'desc']
     ]
-  });
+  };
+
+  // conditionally apply a where clause for specific currency.
+  if (req.query.coin) {
+    queryOptions.where = {
+      currency: req.query.coin
+    };
+  }
+
+  const transactions = await Transaction.findAll(queryOptions);
   res.json(transactions);
 };
 

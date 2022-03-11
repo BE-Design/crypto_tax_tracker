@@ -12,11 +12,12 @@ class TransactionService {
   /**
    * Retrieve all transactions from the server.
    * 
-   * @param {string} sortDirection
+   * @param {object} params
    * @returns {Promise<AxiosResponse<any>>}
    */
-  static async all(sortDirection = 'desc') {
-    return await client.get(`${ENDPOINT}?sort=${sortDirection}`);
+  static async all(params = {}) {
+    const queryString = Object.keys(params).map(key => key + '=' + params[key]).join('&');
+    return await client.get(`${ENDPOINT}?${queryString}`);
   }
 
   /**

@@ -9,12 +9,12 @@ const TRANSACTIONS_CACHE_KEY = 'transactions';
 /**
  * Retrieve all transactions.
  *
- * @param {string} sortOrder
+ * @param {object} params
  * @param {object} options
  * @returns UseQueryResult
  */
-export const useGetTransactions = (sortOrder, options = {}) => {
-  return useQuery([TRANSACTIONS_CACHE_KEY, sortOrder], () => TransactionService.all(sortOrder), {
+export const useGetTransactions = (params = {}, options = {}) => {
+  return useQuery([TRANSACTIONS_CACHE_KEY, JSON.stringify(params)], () => TransactionService.all(params), {
     initialData: [],
     ...options
   });
