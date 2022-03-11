@@ -7,11 +7,11 @@ function CoinCard({ coin }) {
   const { isLoading: isLoadingCoinDetails, data: coinDetails } = useGetCoinDetails(coin);
   const { isLoading: isLoadingTransactions, data: transactions } = useGetTransactions({ coin });
 
-  /** just an alias so we don't have to call data.data everywhere in the template... */
+  /** just an alias so we don't have to call coinDetails.data everywhere in the template... */
   const coinData = coinDetails ? coinDetails.data : null;
 
   /**
-   * Sum of current holdings for the coin. All positive transactions should be included in the sum (purchased, mined, staked)
+   * Sum of current holdings for the coin. All positive transactions should be included in the sum (purchased, mined, staked).
    * @returns {*}
    */
   const getHoldings = () => {
@@ -19,6 +19,10 @@ function CoinCard({ coin }) {
       .reduce((accumulator, item) => accumulator + item.amount, 0)
   };
 
+  /**
+   * Get total USD value of all current holdings.
+   * @returns {number}
+   */
   const getValue = () => {
     return getHoldings() * coinData.market_data.current_price.usd;
   }
@@ -32,11 +36,11 @@ function CoinCard({ coin }) {
         <div className="flex flex-col gap-3">
           <div className="flex justify-between items-center">
             <div className="flex items-center">
-              <img className="w-10" src={coinData.image.large} alt="Sunset in the mountains" />
+              <img className="w-10" src={ coinData.image.large } alt="Sunset in the mountains" />
               <div className="ml-4">
                 <h4>
                   <span className="text-lg mr-2">{ coinData.name }</span>
-                  <span className="text-sm uppercase text-slate-600">{ coinData.symbol }</span>
+                  <span className="text-xs uppercase text-slate-600">{ coinData.symbol }</span>
                 </h4>
               </div>
             </div>
@@ -50,7 +54,7 @@ function CoinCard({ coin }) {
           <div className="flex justify-between">
             <div>
               <h5 className="uppercase text-xs text-slate-600">Price</h5>
-              <p className="font-semibold">${ coinData.market_data.current_price.usd.toFixed(2) }</p>
+              <p className="font-semibold text-slate-800">${ coinData.market_data.current_price.usd.toFixed(2) }</p>
             </div>
 
             <div>
