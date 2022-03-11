@@ -6,15 +6,19 @@ import { useGetTransactions } from "../../hooks/transaction";
 
 function TransactionTable() {
   const [creating, setCreating] = useState(false);
-  const [sortOrder, setSortOrder] = useState('desc');
-  const { isLoading, data: response } = useGetTransactions(sortOrder);
+  const [params, setParams] = useState({ sort: 'desc' });
+  const { isLoading, data: response } = useGetTransactions(params);
+
+  const setQueryParams = (newParams) => {
+    setParams({ ...params, ...newParams });
+  }
 
   const onCreate = () => {
     setCreating(false);
   }
 
   return (
-    <div className="p-5 inline-block w-full drop-shadow-lg rounded-lg overflow-hidden">
+    <div className="inline-block w-full drop-shadow-lg rounded-lg overflow-hidden">
       {isLoading &&
         <div>LOADING</div>
       }
@@ -23,7 +27,7 @@ function TransactionTable() {
         <thead>
         <tr>
           <th className="w-64 px-5 py-3  bg-slate-100 border-b border-slate-200  text-slate-800 text-left text-sm uppercase font-normal">
-            <TransactionTableSortableHeader name={"Date"} sortDirection={sortOrder} onSortChange={e => setSortOrder(e)} />
+            <TransactionTableSortableHeader name={"Date"} sortDirection={params.sort} onSortChange={e => setQueryParams({ sort: e })} />
           </th>
           <th className="w-64 px-5 py-3  bg-slate-100 border-b border-slate-200  text-slate-800 text-left text-sm uppercase font-normal">
             Pair
