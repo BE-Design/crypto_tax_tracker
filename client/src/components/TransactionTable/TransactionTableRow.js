@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import TransactionTableCell from './TransactionTableCell';
 import { ArrowRightIcon, PencilIcon, SaveIcon, TrashIcon, XIcon, CheckIcon, QuestionMarkCircleIcon } from '@heroicons/react/outline';
 import { toast } from 'react-toastify';
-import { useDeleteTransaction, useUpdateTransaction } from "../../hooks/transaction";
+import { useDeleteTransaction, useUpdateTransaction } from '../../hooks/transaction';
+import { useKeypress } from '../../hooks/keypress';
 
 function TransactionTableRow({ transaction }) {
   const [dirtyState, setDirtyState] = useState(Object.assign({}, transaction));
@@ -27,9 +28,13 @@ function TransactionTableRow({ transaction }) {
 
   // edit cancelling will reset the dirty state
   const handleCancel = () => {
-    setDirtyState(Object.assign({}, transaction));
-    setEditing(false);
+    if (editing) {
+      setDirtyState(Object.assign({}, transaction));
+      setEditing(false);
+    }
   };
+
+  useKeypress(27, handleCancel, 'keyup', [editing]);
 
   return (
     <tr>

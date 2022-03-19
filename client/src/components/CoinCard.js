@@ -12,7 +12,7 @@ function CoinCard({ coin }) {
 
   /**
    * Sum of current holdings for the coin. All positive transactions should be included in the sum (purchased, mined, staked).
-   * @returns {*}
+   * @returns {Number}
    */
   const getHoldings = () => {
     return transactions.data.filter(transaction => ['buy', 'mined', 'staked'].includes(transaction.tradeType.toLowerCase()))
@@ -21,7 +21,7 @@ function CoinCard({ coin }) {
 
   /**
    * Get total USD value of all current holdings.
-   * @returns {number}
+   * @returns {Number}
    */
   const getValue = () => {
     return getHoldings() * coinData.market_data.current_price.usd;
