@@ -15,7 +15,7 @@ function  App() {
   return (
     <QueryClientProvider client={queryClient}>
       <div className="p-5 bg-gray-100 h-screen">
-        <div className="mb-12 flex justify-between">
+        <div className="mb-24 flex justify-between">
           {/* todo ideally I'd like this list to be customizable and likely broken out into another component... */}
           <CoinCard coin="bitcoin" />
           <CoinCard coin="ethereum" />

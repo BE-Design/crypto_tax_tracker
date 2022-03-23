@@ -22,7 +22,12 @@ function TransactionTable() {
       {isLoading &&
         <div>LOADING</div>
       }
-      <button onClick={() => setCreating(true)}>+ New Transaction</button>
+      <div className="flex justify-between mb-3">
+        <h2 className="text-2xl font-medium">Transactions</h2>
+        <button className="bg-slate-100 text-slate-700 hover:bg-slate-700 hover:text-white text-md font-bold py-2 px-4 rounded-full" onClick={() => setCreating(true)}>
+          Add Transaction
+        </button>
+      </div>
       <table className="w-full leading-normal">
         <thead>
         <tr>
