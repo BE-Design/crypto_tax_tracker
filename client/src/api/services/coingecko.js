@@ -32,8 +32,8 @@ class CoinGeckoService {
         return await client.get(`coins/${id}/ohlc?vs_currency=${CURRENCY}&days=${numOfDays}`)
     }
 
-    static async marketHistory(id, numOfDays) {
-        return await client.get(`coins/${id}/market_chart?vs_currency=${CURRENCY}&days=${numOfDays}`)
+    static async marketHistory(id, numOfDays, interval = 'auto') {
+        return await client.get(`coins/${id}/market_chart?vs_currency=${CURRENCY}&days=${numOfDays}&interval=${interval}`)
     }
 }
 

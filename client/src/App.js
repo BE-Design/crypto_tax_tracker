@@ -1,5 +1,5 @@
 import React from 'react';
-import CoinCard from "./components/CoinCard";
+import CoinCard from "./components/CoinCard/CoinCard";
 import TransactionTable from './components/TransactionTable/TransactionTable';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ToastContainer } from 'react-toastify';
